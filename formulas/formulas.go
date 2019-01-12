@@ -13,12 +13,7 @@ var (
 // great-circle distance between two coordinate points (on earth).
 // Errors if lat or lng are not valid: [-90.0, 90.0] for lat and [-180.0, 180.0] for lng.
 func SphericalLawOfCosinesEarth(latA, lngA, latB, lngB float64) (float64, error) {
-	validLatA := latA >= -90.0 && latA <= 90.0
-	validLngA := lngA >= -180.0 && lngA <= 180.0
-	validLatB := latB >= -90.0 && latB <= 90.0
-	validLngB := lngB >= -180.0 && lngB <= 180.0
-
-	if !validLatA || !validLngA || !validLatB || !validLngB {
+	if !ValidLatLng(latA, lngA) || !ValidLatLng(latB, lngB) {
 		return 0.0, errInvalidLatLng
 	}
 
@@ -46,4 +41,10 @@ func SphericalLawOfCosinesEarth(latA, lngA, latB, lngB float64) (float64, error)
 
 func toRadians(valDegrees float64) float64 {
 	return (valDegrees * math.Pi) / 180
+}
+
+// ValidLatLng returns whether the given lat and lng coordinates are valid
+func ValidLatLng(lat, lng float64) bool {
+	return (lat >= -90.0 && lat <= 90.0) &&
+		(lng >= -180.0 && lng <= 180.0)
 }

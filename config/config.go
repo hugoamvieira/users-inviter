@@ -2,7 +2,14 @@ package config
 
 import (
 	"encoding/json"
+	"errors"
 	"io/ioutil"
+
+	"github.com/hugoamvieira/intercom-users-inviter/formulas"
+)
+
+var (
+	errInvalidConfiguration = errors.New("Configuration is invalid (check lat lng)")
 )
 
 // Config is the structure that holds this program's configuration.
@@ -28,5 +35,13 @@ func NewJSON(filePath string) (*Config, error) {
 		return nil, err
 	}
 
+	if !cfg.valid() {
+		return nil, errInvalidConfiguration
+	}
+
 	return &cfg, nil
+}
+
+func (c *Config) valid() bool {
+	return formulas.ValidLatLng(c.Lat, c.Lng)
 }
