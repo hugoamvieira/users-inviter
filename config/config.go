@@ -43,5 +43,7 @@ func NewJSON(filePath string) (*Config, error) {
 }
 
 func (c *Config) valid() bool {
-	return formulas.ValidLatLng(c.Lat, c.Lng)
+	return formulas.ValidLatLng(c.Lat, c.Lng) &&
+		c.DistThresholdKm > 0 &&
+		c.UsersFilePath != ""
 }
