@@ -1,0 +1,6 @@
+{
+	"latitude": 53.339428,
+	"longitude": -6.257664,
+	"distance_threshold_km": 100.0,
+	"users_file_path": "./customers.txt"
+}
