@@ -30,3 +30,8 @@ This program takes a JSON configuration file (normally under config/config.json)
 ```
 
 4. Run `go run .`
+
+
+## Run Unit Tests
+
+1. From the root of this repository, run `go test ./...`
