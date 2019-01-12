@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	errInvalidConfiguration = errors.New("Configuration is invalid (check lat lng)")
+	errInvalidConfiguration = errors.New("Configuration is invalid")
 )
 
 // Config is the structure that holds this program's configuration.
